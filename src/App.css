@@ -1,0 +1,444 @@
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg2: #121212;
+  --bg3: #1a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --text: #f0ece4;
+  --muted: #666;
+  --accent: #ff2d2d;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Config Screen ─────────────────────────────────────────────────────────── */
+.config-screen {
+  width: 100%;
+  max-width: 480px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.config-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+
+.config-logo {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -2px;
+  margin-bottom: 4px;
+}
+
+.config-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  letter-spacing: 6px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.config-title span {
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.config-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* ── Presets ───────────────────────────────────────────────────────────────── */
+.preset-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.preset-btn {
+  flex: 1;
+  padding: 10px 0;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(255,45,45,0.08);
+}
+
+.config-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.config-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.config-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 300;
+}
+
+.config-control {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.adj-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+.adj-btn:hover {
+  border-color: var(--accent);
+  background: rgba(255,45,45,0.1);
+  color: var(--accent);
+}
+
+.config-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  min-width: 56px;
+  text-align: center;
+  color: var(--text);
+}
+
+.config-summary {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.config-summary strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.start-btn {
+  margin-top: 36px;
+  width: 100%;
+  padding: 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.start-btn:hover {
+  background: #ff4444;
+  transform: translateY(-1px);
+}
+
+.start-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Timer Screen ─────────────────────────────────────────────────────────── */
+.timer-screen {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.bg-pulse {
+  position: fixed;
+  inset: 0;
+  opacity: 0.04;
+  transition: background 0.6s ease, opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.timer-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.timer-logo-small {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 5px;
+  color: rgba(255,255,255,0.2);
+  flex: 1;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: rgba(255,255,255,0.35);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.global-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.05);
+  z-index: 20;
+}
+
+.global-progress-fill {
+  height: 100%;
+  transition: width 1s linear, background 0.5s ease;
+}
+
+.phase-label {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: 10px;
+  text-align: center;
+  margin-bottom: 32px;
+  transition: color 0.5s ease;
+  position: relative;
+  z-index: 1;
+  min-height: 54px;
+}
+
+.timer-center {
+  position: relative;
+  z-index: 1;
+}
+
+.timer-digits {
+  font-family: var(--font-display);
+  font-size: clamp(90px, 20vw, 140px);
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -4px;
+  transition: color 0.2s;
+}
+
+@keyframes flash-countdown {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.timer-digits-flash {
+  color: var(--phase-color);
+  animation: flash-countdown 0.6s ease-in-out infinite;
+}
+
+.timer-done-icon {
+  font-size: 100px;
+  color: var(--phase-color);
+}
+
+.interval-counter {
+  margin-top: 32px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.interval-num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  color: var(--phase-color);
+  line-height: 1;
+  transition: color 0.5s;
+}
+
+.interval-sep {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  color: var(--muted);
+}
+
+.interval-total {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.phase-hint {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.done-text {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: var(--phase-color);
+  align-self: center;
+}
+
+/* ── Dots ─────────────────────────────────────────────────────────────────── */
+.dots-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 400px;
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dot-done {
+  background: var(--c);
+  border-color: var(--c);
+  opacity: 0.5;
+}
+
+.dot-active {
+  background: var(--c);
+  border-color: var(--c);
+  transform: scale(1.4);
+  box-shadow: 0 0 8px var(--c);
+}
+
+/* ── Paused hint ──────────────────────────────────────────────────────────── */
+.paused-hint {
+  margin-top: 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Icon btn muted state ─────────────────────────────────────────────────── */
+.icon-btn-muted {
+  opacity: 0.4;
+}
+
+/* ── Done state ────────────────────────────────────────────────────────────── */
+.done-btn {
+  margin-top: 48px;
+  max-width: 320px;
+  background: var(--phase-color);
+}
+
+.done-btn:hover {
+  filter: brightness(1.15);
+  background: var(--phase-color);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .config-screen {
+    padding: 36px 24px;
+  }
+  .timer-digits {
+    font-size: 100px;
+  }
+  .phase-label {
+    font-size: 24px;
+    letter-spacing: 6px;
+  }
+}
