@@ -1,7 +1,7 @@
 {
   "name": "gibala-timer",
   "version": "1.0.0",
-  "homepage": "https://thecarrulo.github.io/Gibala",
+  "homepage": "https://gibala.carrulo.pt",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
